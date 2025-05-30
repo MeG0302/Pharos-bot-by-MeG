@@ -7,10 +7,10 @@ import chalk from "chalk";
 import { ethers as e } from "ethers";
 import FakeUserAgent from "fake-useragent";
 
-// ✅ Corrected path to utils.js inside chains/utils/
-import { maskAddress, etc, pharos, BASE_API, REF_CODE, RPC_URL } from "./chains/utils/utils.js";
+// 👇 These should come from your own custom util file if it exists
+import { maskAddress, etc, pharos, BASE_API, REF_CODE, RPC_URL } from "./utils.js";
 
-// ✅ Same file for contract addresses
+// 👇 These come from the chains/utils/utils.js
 import { ROUTER, WPHRS, USDC, USDT, SWAP } from "./chains/utils/utils.js";
 
 
