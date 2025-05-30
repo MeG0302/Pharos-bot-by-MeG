@@ -1,8 +1,15 @@
-const chalk = require("chalk").default || require("chalk");
-const path = require("path");
-const fs = require("fs");
-const readline = require("readline");
-const service = require("./service");
+import chalk from "chalk";
+import path from "path";
+import fs from "fs";
+import readline from "readline";
+import * as service from "./service.mjs"; // Ensure service is also ES module
+
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+// Fix __dirname for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Menu Options
 const menuOptions = [
@@ -88,8 +95,8 @@ function spinner(msg) {
 
 // Main Logic
 async function main() {
-  displayBanner();
   loadWallets();
+  displayBanner();
 
   const txCount = await ask("Max transactions per wallet", "number", "5");
   global.maxTransaction = isNaN(txCount) || txCount <= 0 ? 5 : txCount;
