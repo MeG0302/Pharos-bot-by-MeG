@@ -2,10 +2,15 @@ import chalk from "chalk";
 import path from "path";
 import fs from "fs";
 import readline from "readline";
-import * as service from "./service.mjs"; // Ensure service is also ES module
 
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
+// Import CommonJS service.js
+const service = require("./service.js");
+
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 // Fix __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
