@@ -677,13 +677,13 @@ async function unlimitedFaucet(logger) {
   logger(`System | --------------------------------------------`);
 }
 
-// declare functions normally (without export keyword)
+// Define all functions normally
 function performSwapUSDC() { ... }
 function performSwapUSDT() { ... }
-// other functions...
+// ...
 
-// then at bottom export all once
-export {
+// Export with module.exports at the bottom
+module.exports = {
   performSwapUSDC,
   performSwapUSDT,
   addLpUSDC,
@@ -697,3 +697,4 @@ export {
   socialTask,
   unlimitedFaucet,
 };
+
