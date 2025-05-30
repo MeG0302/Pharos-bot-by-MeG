@@ -1,13 +1,14 @@
 // service.js
 
-const axios = require("axios");
-const qs = require("qs");
-const fs = require("fs");
-const chalk = require("chalk");
-const e = require("ethers"); // Assuming ethers.js, adjust if using custom SDK
-const FakeUserAgent = require("fake-useragent"); // If this is your own or a package
-const { maskAddress, etc, pharos, BASE_API, REF_CODE, RPC_URL } = require("./utils"); 
-// Adjust imports for your project structure
+import axios from "axios";
+import qs from "qs";
+import fs from "fs";
+import chalk from "chalk";
+import { ethers as e } from "ethers"; // or just `import { ethers } from "ethers";` depending on usage
+import FakeUserAgent from "fake-useragent"; 
+import { maskAddress, etc, pharos, BASE_API, REF_CODE, RPC_URL } from "./utils.js"; 
+// Note the .js extension in "./utils.js" for ES modules; adjust path accordingly
+
 
 /**
  * Claim USDC faucet for each wallet in global.selectedWallets
