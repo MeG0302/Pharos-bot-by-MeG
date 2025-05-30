@@ -6,7 +6,7 @@ import chalkImport from "chalk";
 const chalk = chalkImport.default || chalkImport;
 import axios from "axios";
 import FakeUserAgent from "fake-useragent";
-import chains from "./chains";
+import chains from './chains/index.js';
 
 const pharos = chains.testnet.pharos;
 const etc = chains.utils.etc;
