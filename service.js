@@ -8,7 +8,7 @@ import { ethers as e } from "ethers";
 import FakeUserAgent from "fake-useragent";
 
 // 👇 These should come from your own custom util file if it exists
-import { maskAddress, etc, pharos, BASE_API, REF_CODE, RPC_URL } from "./utils.js";
+import { maskAddress, etc, pharos, BASE_API, REF_CODE, RPC_URL } from "./chains/utils/utils.js";
 
 // 👇 These come from the chains/utils/utils.js
 import { ROUTER, WPHRS, USDC, USDT, SWAP } from "./chains/utils/utils.js";
