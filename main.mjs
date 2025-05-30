@@ -3,18 +3,15 @@ import path from "path";
 import fs from "fs";
 import readline from "readline";
 
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-
-// Import CommonJS service.js
-const service = require("./service.js");
-
 import { fileURLToPath } from "url";
 import { dirname } from "path";
 
 // Fix __dirname for ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
+
+// Import service.js as ES module
+import * as service from "./service.js";  // <-- note .js extension and ESM import
 
 // Menu Options
 const menuOptions = [
