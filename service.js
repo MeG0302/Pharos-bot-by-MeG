@@ -6,7 +6,8 @@ import fs from "fs";
 import chalk from "chalk";
 import { ethers as e } from "ethers"; // or just `import { ethers } from "ethers";` depending on usage
 import FakeUserAgent from "fake-useragent"; 
-import { maskAddress, etc, pharos, BASE_API, REF_CODE, RPC_URL } from "./utils.js"; 
+import { maskAddress, etc, pharos, BASE_API, REF_CODE, RPC_URL } from "./utils.js";
+import { ROUTER, WPHRS, USDC, USDT, SWAP } from './chains/utils/utils.js';
 // Note the .js extension in "./utils.js" for ES modules; adjust path accordingly
 
 
