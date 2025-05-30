@@ -677,7 +677,7 @@ async function unlimitedFaucet(logger) {
   logger(`System | --------------------------------------------`);
 }
 
-module.exports = {
+export {
   performSwapUSDC,
   performSwapUSDT,
   addLpUSDC,
