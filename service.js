@@ -1,11 +1,13 @@
-const fs = require("fs");
-const path = require("path");
-const qs = require("querystring");
-const { ethers: e } = require("ethers");
-const chalk = require("chalk").default || require("chalk");
-const axios = require("axios");
-const FakeUserAgent = require("fake-useragent");
-const chains = require("./chains");
+import fs from "fs";
+import path from "path";
+import qs from "querystring";
+import { ethers as e } from "ethers";
+import chalkImport from "chalk";
+const chalk = chalkImport.default || chalkImport;
+import axios from "axios";
+import FakeUserAgent from "fake-useragent";
+import chains from "./chains.js";  // Note: add `.js` extension in ES modules
+
 const pharos = chains.testnet.pharos;
 const etc = chains.utils.etc;
 const abi = chains.utils.abi;
