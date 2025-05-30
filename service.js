@@ -677,6 +677,12 @@ async function unlimitedFaucet(logger) {
   logger(`System | --------------------------------------------`);
 }
 
+// declare functions normally (without export keyword)
+function performSwapUSDC() { ... }
+function performSwapUSDT() { ... }
+// other functions...
+
+// then at bottom export all once
 export {
   performSwapUSDC,
   performSwapUSDT,
