@@ -563,6 +563,60 @@ async function accountCheckIn(logger) {
     await etc.delay(5000);
   }
 }
+async function accountCheck(logger) {
+  for (let walletData of global.selectedWallets || []) {
+    const { privatekey: privateKey, token: authToken, name: walletName = "unnamed wallet" } = walletData;
+    
+    // More descriptive error messages
+    if (!privateKey && !authToken) {
+      logger(`System | ${walletName} | Skipping - missing both private key and auth token`);
+      continue;
+    }
+    if (!privateKey) {
+      logger(`System | ${walletName} | Skipping - missing private key`);
+      continue;
+    }
+    if (!authToken) {
+      logger(`System | ${walletName} | Skipping - missing auth token (try Login first)`);
+      continue;
+    }
+
+    try {
+      const wallet = new e.Wallet(privateKey, pharos.provider());
+      logger(`System | ${walletName} | Checking profile for ${maskAddress(wallet.address)}`);
+      
+      const response = await axios.get(`${BASE_API}/user/profile?address=${wallet.address}`, {
+        headers: { 
+          ...etc.headers,
+          authorization: `Bearer ${authToken}` 
+        },
+        timeout: 10000
+      });
+      
+      if (!response.data?.data?.user_info) {
+        logger(`System | ${walletName} | No user info found in response`);
+        continue;
+      }
+      
+      const { ID, TotalPoints, TaskPoints, InvitePoints } = response.data.data.user_info;
+      logger(`System | ${walletName} | Points - Total: ${TotalPoints}, Tasks: ${TaskPoints}, Invites: ${InvitePoints}`);
+      
+    } catch (error) {
+      if (error.response) {
+        // HTTP error from server
+        logger(`System | ${walletName} | API Error: ${error.response.status} - ${error.response.data?.message || 'No details'}`);
+      } else if (error.request) {
+        // No response received
+        logger(`System | ${walletName} | Network Error: No response from server`);
+      } else {
+        // Other errors
+        logger(`System | ${walletName} | Error: ${error.message}`);
+      }
+    }
+    await etc.delay(2000); // Reduced delay between checks
+  }
+  logger(`System | Balance check completed`);
+}
 
 async function claimFaucetUSDC(logger) {
   for (let walletData of global.selectedWallets || []) {
