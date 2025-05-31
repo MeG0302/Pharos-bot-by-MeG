@@ -1,12 +1,11 @@
-import fs from "fs";
-import path from "path";
-import qs from "querystring";
-import { ethers as e } from "ethers";
-import chalk from "chalk";
-import axios from "axios";
-import FakeUserAgent from "fake-useragent";
-import chains from "./chains.js";
-
+const fs = require("fs");
+const path = require("path");
+const qs = require("querystring");
+const { ethers: e } = require("ethers");
+const chalk = require("chalk").default || require("chalk");
+const axios = require("axios");
+const FakeUserAgent = require("fake-useragent");
+const chains = require("./chains");
 const pharos = chains.testnet.pharos;
 const etc = chains.utils.etc;
 const abi = chains.utils.abi;
@@ -30,7 +29,7 @@ function maskAddress(address) {
 
 // Utility to ask for input (used for wallet generation)
 async function askQuestion(question, logger) {
-  const readline = await import("readline");
+  const readline = require("readline");
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -942,7 +941,7 @@ async function unlimitedFaucet(logger) {
   logger(`System | --------------------------------------------`);
 }
 
-export {
+module.exports = {
   performSwapUSDC,
   performSwapUSDT,
   addLpUSDC,
